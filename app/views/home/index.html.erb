@@ -1,17 +1,17 @@
-<h1>Choisissez une monnaie</h1>
+<h1>Bienvenue au cryptodrome</h1>
 
 <%= form_for :search do |f| %>
  
 
   
-    <%= f.label :Type_your_research_here %>
+    <%= f.label :Choisis_ta_faillite_ou_richesse %>
     <%= f.select :choice, (@currencies) %>
  
 
-    <%= f.submit "Search" %>
+    <%= f.submit "Sors ton mouchoir" %>
 
 
- The current price of <%= @currency %> is :</p>
+ Le cours de ton cryptocheval est <%= @currency %> is :</p>
  <p><%= @price %>$</p>
  
 <% end %>
