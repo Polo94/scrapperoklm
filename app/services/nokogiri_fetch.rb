@@ -3,33 +3,25 @@ require 'nokogiri'
 
 class NokogiriFetch
 
-	def initialize
+  def initialize
+	@page = Nokogiri::HTML(open("https://coinmarketcap.com/all/views/all/")) 
 
-		@page = Nokogiri::HTML(open("https://coinmarketcap.com/all/views/all/")) 
+	@name_list = @page.css('a.currency-name-container') 
+	@price_list = @page.css('a.price') 
+  end
 
-		@name_list = @page.css('a.currency-name-container') 
-		@price_list = @page.css('a.price') 
-
+  def perform(name)
+	@tab = Hash.new 
+	for i in 0 .. (@name_list.length-1)
+	  @tab[@name_list[i].text] = @price_list[i]['data-usd'] 
 	end
-
-	def perform(name)
-
-
-		@tab = Hash.new 
-
-		for i in 0 .. (@name_list.length-1)
-			@tab[@name_list[i].text] = @price_list[i]['data-usd'] 
-		end
 	
-
-	  return @tab[name]
-
-	end
-
-	def all_currencies
-
-		@currencies = @name_list.map{|i| i.text}
+	return @tab[name]
 
 	end
+
+  def all_currencies
+	@currencies = @name_list.map{|i| i.text}
+  end
 
 end
