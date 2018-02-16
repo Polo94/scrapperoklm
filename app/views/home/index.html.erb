@@ -1,0 +1,19 @@
+<h1>Choisissez une monnaie</h1>
+
+<%= form_for :search do |f| %>
+ 
+
+  
+    <%= f.label :Type_your_research_here %>
+    <%= f.select :choice, (@currencies) %>
+ 
+
+    <%= f.submit "Search" %>
+
+
+ The current price of <%= @currency %> is :</p>
+ <p><%= @price %>$</p>
+ 
+<% end %>
+
+
